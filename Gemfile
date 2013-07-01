@@ -7,6 +7,7 @@ gem 'bcrypt-ruby'
 
 gem 'pg'
 gem 'jquery-rails'
+gem 'debugger'
 
 group :development do
   gem 'quiet_assets'
