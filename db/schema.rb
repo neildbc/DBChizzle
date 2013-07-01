@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701181325) do
+ActiveRecord::Schema.define(:version => 20130701184911) do
 
   create_table "karma_points", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -32,5 +32,7 @@ ActiveRecord::Schema.define(:version => 20130701181325) do
     t.datetime "updated_at",                               :null => false
     t.integer  "total_karma",               :default => 0
   end
+
+  add_index "users", ["total_karma"], :name => "index_users_on_total_karma"
 
 end

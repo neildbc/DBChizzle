@@ -18,12 +18,11 @@ class User < ActiveRecord::Base
             :uniqueness => {:case_sensitive => false}
 
   def self.by_karma
-    all.sort_by(&:total_karma).reverse
+    order('total_karma DESC')
+    # all.sort_by(&:total_karma).reverse
+    # array = self.pluck(:id).zip(self.pluck(:total_karma)).sort_by { |i| i[1]}.reverse[0..49]
+    # array.map { |i| User.find(i[0]) }
   end
-
-  # def total_karma
-  #   self.karma_points.sum(:value)
-  # end
 
   def update_karma(value)
     self.total_karma += value
