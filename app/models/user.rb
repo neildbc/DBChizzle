@@ -19,9 +19,15 @@ class User < ActiveRecord::Base
 
   def self.by_karma
     order('total_karma DESC')
-    # all.sort_by(&:total_karma).reverse
-    # array = self.pluck(:id).zip(self.pluck(:total_karma)).sort_by { |i| i[1]}.reverse[0..49]
-    # array.map { |i| User.find(i[0]) }
+  end
+
+  def self.page(number)
+    offset = (number - 1) * 50
+
+    t = Time.now
+    retVal = self.by_karma.offset(offset).limit(50)
+    puts Time.now - t
+    retVal
   end
 
   def update_karma(value)
